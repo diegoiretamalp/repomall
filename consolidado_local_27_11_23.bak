@@ -1,0 +1,502 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         10.4.28-MariaDB - mariadb.org binary distribution
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             12.5.0.6677
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-- Volcando estructura para tabla laraveldb.databases
+CREATE TABLE IF NOT EXISTS `databases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `mall_id` int(11) DEFAULT NULL,
+  `distribucion_id` int(11) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 1,
+  `deleted` tinyint(4) DEFAULT 0,
+  `db_host` varchar(250) DEFAULT NULL,
+  `db_user` varchar(250) DEFAULT NULL,
+  `db_password` varchar(250) DEFAULT NULL,
+  `db_port` varchar(250) DEFAULT NULL,
+  `db_name` varchar(250) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.databases: ~8 rows (aproximadamente)
+INSERT INTO `databases` (`id`, `nombre`, `mall_id`, `distribucion_id`, `estado`, `deleted`, `db_host`, `db_user`, `db_password`, `db_port`, `db_name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'SAN FERNANDO', 1, 1, 1, 0, '186.10.7.214', 'sanfernando', 'o0p6HJ7Hp#5LIPK*iA', '3308', 'data_sanfernando', '2023-11-17 15:24:10', NULL, NULL),
+	(2, 'COQUIMBO', 2, 1, 1, 0, '186.10.7.214', 'coquimbo', '#4fJ9jEuqQ1@%t1r6Z', '3308', 'data_coquimbo', '2023-11-17 15:25:13', NULL, NULL),
+	(3, 'TRAPENSES', 3, 1, 1, 0, '186.10.7.214', 'trapenses', 'gCyhw3U038I*IOWxhsS', '3308', 'data_trapenses', '2023-11-17 15:26:06', NULL, NULL),
+	(4, 'PANORAMICO', 4, 1, 1, 0, '186.10.7.214', 'panoramico', '#Dc7&Rvmy$bpx04A6U', '3308', 'data_panoramico', '2023-11-17 15:27:19', NULL, NULL),
+	(5, 'ANTOFAGASTA', 5, 2, 1, 0, '186.10.7.214', 'antofagasta', 'C#3t8JrQW7r3!AGt$5', '3308', 'data_euantofagasta', '2023-11-17 15:28:09', NULL, NULL),
+	(6, 'PUNTA ARENAS', 6, 2, 1, 0, '186.10.7.214', 'puntarenas', '!@9E5P8l25t2OQy*gV', '3308', 'data_eupuntarenas', '2023-11-17 15:28:09', NULL, NULL),
+	(7, 'LA LAGUNA', 7, 2, 1, 0, '186.10.7.214', 'eulalaguna', 'l9O"4zrG2Oo7U-vg*I', '3308', 'data_eulalaguna', '2023-11-17 15:28:09', NULL, NULL),
+	(8, 'Mall test 3', 13, 2, 1, 0, '186.10.7.214', 'puntarenas', '!@9E5P8l25t2OQy*gV', '3308', 'data_eupuntarenas', '2023-11-24 20:56:42', NULL, NULL),
+	(9, 'MALL EU LA LAGUNA', 14, NULL, 1, 0, '186.10.7.214', 'eulalaguna', 'l9O"4zrG2Oo7U-vg*I', '3308', 'data_eulalaguna', '2023-11-27 16:34:37', NULL, NULL);
+
+-- Volcando estructura para tabla laraveldb.distribucion
+CREATE TABLE IF NOT EXISTS `distribucion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(250) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.distribucion: ~2 rows (aproximadamente)
+INSERT INTO `distribucion` (`id`, `nombre`, `estado`, `created_at`, `updated_at`) VALUES
+	(1, 'MALL VIVO', 1, '2023-11-16 16:30:28', NULL),
+	(2, 'MALL ESPACIO URBANO', 1, '2023-11-16 16:30:41', NULL);
+
+-- Volcando estructura para tabla laraveldb.failed_jobs
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(191) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.failed_jobs: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla laraveldb.malls
+CREATE TABLE IF NOT EXISTS `malls` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `acceso_r0` tinyint(4) NOT NULL DEFAULT 0,
+  `acceso_r1` tinyint(4) NOT NULL DEFAULT 0,
+  `acceso_r2` tinyint(4) NOT NULL DEFAULT 0,
+  `acceso_r3` tinyint(4) NOT NULL DEFAULT 0,
+  `acceso_vehicle` tinyint(4) DEFAULT 0,
+  `acceso_tendencia` tinyint(4) DEFAULT 0,
+  `acceso_r0_nombre` varchar(50) DEFAULT NULL,
+  `acceso_r1_nombre` varchar(50) DEFAULT NULL,
+  `acceso_r2_nombre` varchar(50) DEFAULT NULL,
+  `acceso_r3_nombre` varchar(50) DEFAULT NULL,
+  `logo` text DEFAULT NULL,
+  `distribucion_id` int(11) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `deleted` tinyint(4) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.malls: ~11 rows (aproximadamente)
+INSERT INTO `malls` (`id`, `nombre`, `descripcion`, `acceso_r0`, `acceso_r1`, `acceso_r2`, `acceso_r3`, `acceso_vehicle`, `acceso_tendencia`, `acceso_r0_nombre`, `acceso_r1_nombre`, `acceso_r2_nombre`, `acceso_r3_nombre`, `logo`, `distribucion_id`, `estado`, `deleted`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Mall Vivo San Fernando', 'Mall Vivo San Fernando', 0, 1, 1, 0, 0, 0, NULL, 'ACCESO GENERAL', 'PATIO DE COMIDAS', NULL, 'img/malls/logos/logo_6564a0bc90f2d.png', 1, 1, 0, '2023-11-15 16:02:12', '2023-11-27 13:59:24', NULL),
+	(2, 'Mall Vivo Coquimbo', 'Mall Vivo Coquimbo', 0, 1, 0, 0, 0, 0, NULL, 'ACCESO GENERAL', NULL, NULL, 'img/malls/logos/logo_6564a0e0c9a56.png', 1, 1, 0, '2023-11-15 16:02:12', '2023-11-27 14:00:00', NULL),
+	(3, 'Mall Vivo Trapenses', 'Mall Vivo Trapenses', 0, 1, 0, 0, 1, 1, NULL, 'ACCESO GENERAL', 'TENDENCIA CLIENTES', NULL, 'img/malls/logos/logo_65649d1055496.png', 1, 1, 0, '2023-11-15 16:02:13', '2023-11-27 13:55:01', NULL),
+	(4, 'Mall Vivo Panorámico', 'Mall Vivo Panorámico', 0, 1, 1, 0, 0, 0, NULL, 'ACCESO GENERAL', 'ACCESO EXTERIOR', NULL, 'img/malls/logos/logo_6564a104df661.png', 1, 1, 0, '2023-11-15 16:02:13', '2023-11-27 14:00:36', NULL),
+	(5, 'Mall EU Antofagasta', 'Mall EU Antofagasta', 0, 1, 1, 1, 1, 0, NULL, 'ACCESO GENERAL', 'SEGUNDO PISO', 'PATIO DE COMIDAS', 'img/malls/logos/logo_6564a1528492c.png', 1, 1, 0, '2023-11-15 16:02:14', '2023-11-27 14:15:47', NULL),
+	(6, 'Mall EU Pionero', 'descripcion', 1, 1, 1, 1, 1, 0, 'ACCESO MALL', 'NIVEL 1', 'SUBTERRANEO -1', 'SUBTERRANEO -2', 'img/malls/logos/logo_6564a507964f6.png', 2, 1, 0, '2023-11-16 16:07:47', '2023-11-27 14:17:43', NULL),
+	(7, 'Mall EU La Laguna', 'Mall EU La Laguna', 0, 0, 0, 0, 1, 0, NULL, NULL, NULL, NULL, 'img/malls/logos/logo_6564a771f2184.png', 2, 0, 1, '2023-11-16 16:07:58', '2023-11-27 16:30:31', '2023-11-27 16:30:31'),
+	(10, 'Mall test 1', 'mall test 1', 1, 1, 1, 1, 0, 0, 'ACCESO GENERAL', 'NIVEL 1', 'SUBTERRANO UNO', 'SUBTERRANEO DOS', 'public/img/malls/logos/logo_6560fe16a8df4.png', 2, 0, 1, '2023-11-24 19:48:38', '2023-11-27 15:15:15', '2023-11-27 15:15:15'),
+	(11, 'Mall test 1', 'mall test 1', 1, 1, 1, 1, 0, 0, 'ACCESO GENERAL', 'NIVEL 1', 'SUBTERRANO UNO', 'SUBTERRANEO DOS', 'public/img/malls/logos/logo_6560fe3ed9e28.png', 2, 0, 1, '2023-11-24 19:49:18', '2023-11-27 15:21:30', '2023-11-27 15:21:30'),
+	(12, 'Mall test 2', 'mall test 2', 1, 1, 1, 1, 0, 0, 'ACCESO GENERAL', 'NIVEL 1', 'SUBTERRANO UNO', 'SUBTERRANEO DOS', 'img\\malls\\logos\\logo_65610086336c9.png', 2, 0, 1, '2023-11-24 19:59:02', '2023-11-27 15:19:09', '2023-11-27 15:19:09'),
+	(13, 'Mall test 3', 'mall test 3', 1, 1, 1, 1, 0, 0, 'ACCESO GENERAL', 'NIVEL 1', 'SUBTERRANO UNO', 'SUBTERRANEO DOS', 'img\\malls\\logos\\logo_65610e0a5c787.png', 2, 0, 1, '2023-11-24 20:56:42', '2023-11-27 14:58:28', '2023-11-27 14:58:28'),
+	(14, 'MALL EU LA LAGUNA', 'MALL EU LA LAGUNA', 0, 0, 0, 0, 1, 0, NULL, NULL, NULL, NULL, 'img/malls/logos/logo_6564c51d81c85.png', NULL, 1, 0, '2023-11-27 16:34:37', NULL, NULL);
+
+-- Volcando estructura para tabla laraveldb.marketing_estructura
+CREATE TABLE IF NOT EXISTS `marketing_estructura` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mall_id` int(11) DEFAULT NULL,
+  `entrada_marketing_id` int(11) DEFAULT NULL,
+  `titulo_entrada` varchar(250) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 1,
+  `eliminado` tinyint(4) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.marketing_estructura: ~14 rows (aproximadamente)
+INSERT INTO `marketing_estructura` (`id`, `mall_id`, `entrada_marketing_id`, `titulo_entrada`, `estado`, `eliminado`, `created_at`, `updated_at`) VALUES
+	(1, 3, 1, 'Datos Estadísticos Sector Alfa 2', 1, 0, '2023-11-03 15:29:38', NULL),
+	(2, 3, 5, 'Datos Estadísticos Sector Joyería', 1, 0, '2023-11-03 15:36:23', NULL),
+	(3, 3, 3, 'Datos Estadísticos Sector Tip & Tap', 1, 0, '2023-11-03 15:36:22', NULL),
+	(4, 3, 4, 'Datos Estadísticos Sector Atrío', 1, 0, '2023-11-03 15:36:23', NULL),
+	(5, 3, 2, 'Datos Estadísticos Sector Alfa 3', 1, 0, '2023-11-03 15:36:24', NULL),
+	(6, 1, 1, 'Datos Estadísticos Rampa -1 Unimarc', 1, 0, '2023-11-06 13:02:00', NULL),
+	(7, 1, 2, 'Datos Estadísticos Acceso Principal', 1, 0, '2023-11-06 13:02:26', NULL),
+	(8, 1, 3, 'Datos Estadísticos Acceso -1', 1, 0, '2023-11-06 13:02:31', NULL),
+	(9, 1, 4, 'Datos Estadísticos Acceso Chillan', 1, 0, '2023-11-06 13:02:40', NULL),
+	(10, 2, 1, 'Marketing Acceso Principal', 1, 0, '2023-11-06 13:06:08', NULL),
+	(11, 2, 2, 'Marketing Escalera Mecánica -1 a 1 (Pecera)', 1, 0, '2023-11-06 13:06:21', NULL),
+	(12, 2, 3, 'Marketing Salida Principal', 1, 0, '2023-11-06 13:06:36', NULL),
+	(13, 4, 1, 'Cámara Acceso Lyon', 1, 0, '2023-11-06 13:13:10', NULL),
+	(14, 4, 2, 'Cámara Acceso P2', 1, 0, '2023-11-06 13:13:56', NULL);
+
+-- Volcando estructura para tabla laraveldb.migrations
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(191) NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.migrations: ~7 rows (aproximadamente)
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+	(1, '2014_10_12_000000_create_users_table', 1),
+	(2, '2014_10_12_100000_create_password_resets_table', 1),
+	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+	(5, '2023_05_05_170522_create_permission_tables', 1),
+	(6, '2023_05_05_170738_create_malls_table', 1),
+	(7, '2023_05_05_171016_add_role_id_and_mall_id_to_user_table', 1),
+	(10, '2023_11_09_122707_create_view_marketing_table', 2);
+
+-- Volcando estructura para tabla laraveldb.model_has_permissions
+CREATE TABLE IF NOT EXISTS `model_has_permissions` (
+  `permission_id` bigint(20) unsigned NOT NULL,
+  `model_type` varchar(191) NOT NULL,
+  `model_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`),
+  CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.model_has_permissions: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla laraveldb.model_has_roles
+CREATE TABLE IF NOT EXISTS `model_has_roles` (
+  `role_id` bigint(20) unsigned NOT NULL,
+  `model_type` varchar(191) NOT NULL,
+  `model_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`),
+  CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.model_has_roles: ~3 rows (aproximadamente)
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+	(1, 'App\\Models\\User', 1),
+	(1, 'App\\Models\\User', 2),
+	(1, 'App\\Models\\User', 3),
+	(2, 'App\\Models\\User', 6);
+
+-- Volcando estructura para tabla laraveldb.password_resets
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(191) NOT NULL,
+  `token` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.password_resets: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla laraveldb.permissions
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `guard_name` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.permissions: ~16 rows (aproximadamente)
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+	(1, 'usuarios.index', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(2, 'usuarios.create', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(3, 'usuarios.edit', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(4, 'usuarios.destroy', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(5, 'mall.index', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(6, 'mall.create', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(7, 'mall.edit', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(8, 'mall.destroy', 'web', '2022-11-10 03:43:47', '2022-11-10 03:43:47'),
+	(9, 'pagina.gestionuser.index', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(10, 'pagina.gestionuser.crear', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(11, 'pagina.gestionuser.editar', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(12, 'pagina.gestionuser.destroy', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(13, 'pagina.gestionmall.index', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(14, 'pagina.gestionmall.create', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(15, 'pagina.gestionmall.edit', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(16, 'pagina.gestionmall.destroy', 'web', '2022-11-24 20:28:00', '2022-11-24 20:28:00');
+
+-- Volcando estructura para tabla laraveldb.personal_access_tokens
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(191) NOT NULL,
+  `tokenable_id` bigint(20) unsigned NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.personal_access_tokens: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla laraveldb.roles
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `guard_name` varchar(191) NOT NULL,
+  `estado` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.roles: ~3 rows (aproximadamente)
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `estado`, `created_at`, `updated_at`) VALUES
+	(1, 'Admin', 'web', 1, '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(2, 'Usuario', 'web', 1, '2022-11-24 20:28:00', '2022-11-24 20:28:00'),
+	(3, 'Gerente', 'web', 1, '2023-11-16 15:02:05', NULL);
+
+-- Volcando estructura para tabla laraveldb.role_has_permissions
+CREATE TABLE IF NOT EXISTS `role_has_permissions` (
+  `permission_id` bigint(20) unsigned NOT NULL,
+  `role_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`permission_id`,`role_id`),
+  KEY `role_has_permissions_role_id_foreign` (`role_id`),
+  CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.role_has_permissions: ~8 rows (aproximadamente)
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+	(1, 1),
+	(2, 1),
+	(3, 1),
+	(4, 1),
+	(5, 1),
+	(6, 1),
+	(7, 1),
+	(8, 1);
+
+-- Volcando estructura para tabla laraveldb.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `distribucion_id` int(11) DEFAULT NULL,
+  `valida_password` tinyint(4) DEFAULT 0,
+  `role_id` bigint(20) unsigned NOT NULL DEFAULT 2,
+  `estado` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  `deleted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `id_mall` bigint(20) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_id_mall_foreign` (`id_mall`),
+  CONSTRAINT `users_id_mall_foreign` FOREIGN KEY (`id_mall`) REFERENCES `malls` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.users: ~6 rows (aproximadamente)
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `distribucion_id`, `valida_password`, `role_id`, `estado`, `deleted`, `id_mall`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Jose Cornejo Ferreira', 'jcornejo@dmtech.cl', NULL, '$2y$10$3WI4pX8upSwnb4iV3yh9NOkt20FA5CsnLQn1ZX0ylVfBDycqxmplW', NULL, NULL, 0, 2, 1, 0, 2, '2022-11-08 08:09:15', '2022-12-20 00:04:12', NULL),
+	(2, 'Diego Retamal Pacheco', 'dretamal@dmtech.cl', NULL, '$2y$10$JhNFouqzzc01lIUbYqob2.3caimdnHoFrvXtpjC2otfYPlm8BgCQi', NULL, NULL, 0, 1, 1, 0, 14, '2023-10-25 18:44:29', '2023-11-27 16:34:48', NULL),
+	(3, 'Jose Cornejo', 'jos.cornejof@duocuc.cl', NULL, '$2y$10$mJAZeUIKk7HlmAmlJimG2OGzEzkEuGdrr51Z19sejJgSNbjkZV2my', NULL, NULL, 0, 1, 1, 0, 2, '2023-04-29 01:09:14', '2023-05-05 01:54:23', NULL),
+	(5, 'diego pacheco', 'diego@gmail.com', NULL, '$2y$10$JhNFouqzzc01lIUbYqob2.3caimdnHoFrvXtpjC2otfYPlm8BgCQi', NULL, 1, 0, 3, 1, 0, 1, '2023-11-16 21:26:42', '2023-11-16 21:58:08', NULL),
+	(6, 'jonas sanche', 'jonas@gmail.com', NULL, '$2y$10$3F7FxL8Mammsd8W0dMQXVermBqv5W1Zrj5qURwF37kmcpFcvf3EGm', NULL, 1, 0, 2, 1, 0, 4, '2023-11-16 23:35:58', '2023-11-27 15:14:19', NULL),
+	(7, 'ignacio', 'ignacio@gmail.com', NULL, '$2y$10$mM8EliVuyDcAWBhdCNkKeOxsCvXbNTLnhKY7Orkj8FHLgN5gplkB2', NULL, 1, 1, 2, 1, 0, 4, '2023-11-27 15:26:12', NULL, NULL);
+
+-- Volcando estructura para tabla laraveldb.view_marketing
+CREATE TABLE IF NOT EXISTS `view_marketing` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `mall_id` int(11) NOT NULL,
+  `entrada_marketing_id` int(11) NOT NULL,
+  `titulo_entrada` varchar(191) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
+  `eliminado` tinyint(1) NOT NULL,
+  `deleted_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla laraveldb.view_marketing: ~14 rows (aproximadamente)
+INSERT INTO `view_marketing` (`id`, `mall_id`, `entrada_marketing_id`, `titulo_entrada`, `estado`, `eliminado`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 3, 1, 'Datos Estadísticos Sector Alfa 2', 1, 0, '2023-11-09 12:44:46', '2023-11-03 15:29:38', NULL),
+	(2, 3, 5, 'Datos Estadísticos Sector Joyería', 1, 0, '2023-11-09 12:44:46', '2023-11-03 15:36:23', NULL),
+	(3, 3, 3, 'Datos Estadísticos Sector Tip & Tap', 1, 0, '2023-11-09 12:44:46', '2023-11-03 15:36:22', NULL),
+	(4, 3, 4, 'Datos Estadísticos Sector Atrío', 1, 0, '2023-11-09 12:44:46', '2023-11-03 15:36:23', NULL),
+	(5, 3, 2, 'Datos Estadísticos Sector Alfa 3', 1, 0, '2023-11-09 12:44:46', '2023-11-03 15:36:24', NULL),
+	(6, 1, 1, 'Datos Estadísticos Rampa -1 Unimarc', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:02:00', NULL),
+	(7, 1, 2, 'Datos Estadísticos Acceso Principal', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:02:26', NULL),
+	(8, 1, 3, 'Datos Estadísticos Acceso -1', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:02:31', NULL),
+	(9, 1, 4, 'Datos Estadísticos Acceso Chillan', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:02:40', NULL),
+	(10, 2, 1, 'Marketing Acceso Principal', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:06:08', NULL),
+	(11, 2, 2, 'Marketing Escalera Mecánica -1 a 1 (Pecera)', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:06:21', NULL),
+	(12, 2, 3, 'Marketing Salida Principal', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:06:36', NULL),
+	(13, 4, 1, 'Cámara Acceso Lyon', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:13:10', NULL),
+	(14, 4, 2, 'Cámara Acceso P2', 1, 0, '2023-11-09 12:44:46', '2023-11-06 13:13:56', NULL);
+
+-- Volcando estructura para tabla laraveldb.view_region_r0
+CREATE TABLE IF NOT EXISTS `view_region_r0` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mostrar_total_entradas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_entradas_segmentadas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_dia_anterior` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_mes` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_anio` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_actual` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_anterior` tinyint(4) DEFAULT NULL,
+  `url_region` varchar(250) DEFAULT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
+  `mall_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.view_region_r0: ~3 rows (aproximadamente)
+INSERT INTO `view_region_r0` (`id`, `mostrar_total_entradas_hoy`, `mostrar_entradas_segmentadas_hoy`, `mostrar_estadisticas_dia_anterior`, `mostrar_estadisticas_consolidadas_mes`, `mostrar_estadisticas_consolidadas_anio`, `mostrar_estadisticas_comparativas_mes_actual`, `mostrar_estadisticas_comparativas_mes_anterior`, `url_region`, `estado`, `mall_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 1, 1, 1, 1, 1, 'acceso-mall', 1, 6, '2023-11-22 16:54:36', '2023-11-27 14:17:43'),
+	(2, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 11, '2023-11-24 19:49:18', NULL),
+	(3, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 12, '2023-11-24 19:59:02', NULL),
+	(4, 0, 0, 0, 0, 0, 0, 0, 'acceso-general', 1, 13, '2023-11-24 20:56:42', NULL);
+
+-- Volcando estructura para tabla laraveldb.view_region_r1
+CREATE TABLE IF NOT EXISTS `view_region_r1` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mostrar_total_entradas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_entradas_segmentadas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_dia_anterior` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_mes` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_anio` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_actual` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_anterior` tinyint(4) DEFAULT NULL,
+  `url_region` varchar(250) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `mall_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.view_region_r1: ~8 rows (aproximadamente)
+INSERT INTO `view_region_r1` (`id`, `mostrar_total_entradas_hoy`, `mostrar_entradas_segmentadas_hoy`, `mostrar_estadisticas_dia_anterior`, `mostrar_estadisticas_consolidadas_mes`, `mostrar_estadisticas_consolidadas_anio`, `mostrar_estadisticas_comparativas_mes_actual`, `mostrar_estadisticas_comparativas_mes_anterior`, `url_region`, `estado`, `mall_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 1, 0, 1, 1, 1, 'acceso-general', 1, 1, '2023-11-22 14:37:19', '2023-11-27 13:59:24'),
+	(2, 1, 1, 1, 0, 1, 1, 1, 'acceso-general', 1, 3, '2023-11-22 14:37:19', '2023-11-27 13:55:01'),
+	(3, 1, 1, 1, 0, 1, 1, 1, 'acceso-general', 1, 4, '2023-11-22 14:37:19', '2023-11-27 14:00:36'),
+	(4, 1, 1, 1, 0, 1, 1, 1, 'nivel-1', 1, 6, '2023-11-22 14:37:19', '2023-11-27 14:17:43'),
+	(5, 1, 1, 1, 0, 1, 1, 1, 'acceso-general', 1, 2, '2023-11-22 14:37:19', '2023-11-27 14:00:00'),
+	(6, 1, 1, 1, 0, 1, 1, 1, 'acceso-general', 1, 5, '2023-11-22 14:37:19', '2023-11-27 14:15:47'),
+	(7, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 11, '2023-11-24 19:49:18', NULL),
+	(8, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 12, '2023-11-24 19:59:02', NULL),
+	(9, 0, 0, 0, 0, 0, 0, 0, 'nivel-1', 1, 13, '2023-11-24 20:56:42', NULL);
+
+-- Volcando estructura para tabla laraveldb.view_region_r2
+CREATE TABLE IF NOT EXISTS `view_region_r2` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mostrar_total_entradas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_entradas_segmentadas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_dia_anterior` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_mes` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_anio` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_actual` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_anterior` tinyint(4) DEFAULT NULL,
+  `url_region` varchar(250) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `mall_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.view_region_r2: ~7 rows (aproximadamente)
+INSERT INTO `view_region_r2` (`id`, `mostrar_total_entradas_hoy`, `mostrar_entradas_segmentadas_hoy`, `mostrar_estadisticas_dia_anterior`, `mostrar_estadisticas_consolidadas_mes`, `mostrar_estadisticas_consolidadas_anio`, `mostrar_estadisticas_comparativas_mes_actual`, `mostrar_estadisticas_comparativas_mes_anterior`, `url_region`, `estado`, `mall_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 1, 1, 1, 1, 1, 'patio-comidas', 1, 1, '2023-11-22 14:37:52', '2023-11-27 13:59:24'),
+	(2, 1, 1, 1, 1, 1, 1, 1, 'tendencia-clientes', 1, 3, '2023-11-22 14:37:52', '2023-11-27 13:55:01'),
+	(3, 1, 1, 1, 1, 1, 1, 1, 'acceso-exterior', 1, 4, '2023-11-22 14:37:52', '2023-11-27 14:00:36'),
+	(4, 1, 1, 1, 1, 1, 1, 1, 'subterraneo-menos-1', 1, 6, '2023-11-22 14:37:52', '2023-11-27 14:17:43'),
+	(5, 1, 1, 1, 1, 1, 1, 1, 'segundo-piso', 1, 5, '2023-11-22 14:37:52', '2023-11-27 14:15:47'),
+	(7, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 11, '2023-11-24 19:49:18', NULL),
+	(8, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 12, '2023-11-24 19:59:02', NULL),
+	(9, 0, 0, 0, 0, 0, 0, 0, 'subterrano-uno', 1, 13, '2023-11-24 20:56:42', NULL);
+
+-- Volcando estructura para tabla laraveldb.view_region_r3
+CREATE TABLE IF NOT EXISTS `view_region_r3` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mostrar_total_entradas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_entradas_segmentadas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_dia_anterior` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_mes` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_anio` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_actual` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_anterior` tinyint(4) DEFAULT NULL,
+  `url_region` varchar(250) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `mall_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.view_region_r3: ~5 rows (aproximadamente)
+INSERT INTO `view_region_r3` (`id`, `mostrar_total_entradas_hoy`, `mostrar_entradas_segmentadas_hoy`, `mostrar_estadisticas_dia_anterior`, `mostrar_estadisticas_consolidadas_mes`, `mostrar_estadisticas_consolidadas_anio`, `mostrar_estadisticas_comparativas_mes_actual`, `mostrar_estadisticas_comparativas_mes_anterior`, `url_region`, `estado`, `mall_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 1, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL),
+	(2, 1, 1, 1, 1, 1, 1, 1, 'subterraneo-menos-2', 1, 6, NULL, '2023-11-27 14:17:43'),
+	(4, 1, 1, 1, 1, 1, 1, 1, 'patio-comidas', 1, 5, NULL, '2023-11-27 14:15:47'),
+	(5, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 11, '2023-11-24 19:49:18', NULL),
+	(6, 1, 1, 1, 1, 1, 1, 1, NULL, 1, 12, '2023-11-24 19:59:02', NULL),
+	(7, 0, 0, 0, 0, 0, 0, 0, 'subterraneo-dos', 1, 13, '2023-11-24 20:56:42', NULL);
+
+-- Volcando estructura para tabla laraveldb.view_vehicle
+CREATE TABLE IF NOT EXISTS `view_vehicle` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mostrar_flujo_personas` tinyint(4) DEFAULT NULL,
+  `mostrar_total_entradas` tinyint(4) DEFAULT NULL,
+  `mostrar_estadia_promedio` tinyint(4) DEFAULT NULL,
+  `mostrar_entradas_segmentadas_hoy` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_dia_anterior` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_mes` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_consolidadas_anio` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_actual` tinyint(4) DEFAULT NULL,
+  `mostrar_estadisticas_comparativas_mes_anterior` tinyint(4) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
+  `mall_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla laraveldb.view_vehicle: ~7 rows (aproximadamente)
+INSERT INTO `view_vehicle` (`id`, `mostrar_flujo_personas`, `mostrar_total_entradas`, `mostrar_estadia_promedio`, `mostrar_entradas_segmentadas_hoy`, `mostrar_estadisticas_dia_anterior`, `mostrar_estadisticas_consolidadas_mes`, `mostrar_estadisticas_consolidadas_anio`, `mostrar_estadisticas_comparativas_mes_actual`, `mostrar_estadisticas_comparativas_mes_anterior`, `estado`, `mall_id`, `created_at`, `updated_at`) VALUES
+	(1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, '2023-11-27 13:55:01', NULL),
+	(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, '2023-11-27 13:59:24', NULL),
+	(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, '2023-11-27 14:00:01', NULL),
+	(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, '2023-11-27 14:00:36', NULL),
+	(5, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 5, '2023-11-27 14:01:54', '2023-11-27 14:15:47'),
+	(6, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 6, '2023-11-27 14:17:43', NULL),
+	(7, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 7, '2023-11-27 14:28:02', NULL),
+	(8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14, '2023-11-27 16:34:37', NULL);
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
